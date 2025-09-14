@@ -16,6 +16,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import Link from "next/link"
+import {FaGithub,FaGoogle} from "react-icons/fa"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { auth } from "@/lib/auth"
@@ -55,7 +56,7 @@ const onSubmit = (data: z.infer<typeof formSchema>)=>{
         },
    { onSuccess:()=>{
     setLoading(false)
-       
+       router.push("/")
     },
           onError:({error})=>{
         setError(error.message)
@@ -151,10 +152,10 @@ const onSubmit = (data: z.infer<typeof formSchema>)=>{
                      <div className="grid grid-cols-2 gap-4">
                         <Button variant="outline" type="button" className="w-full" onClick={()=> authClient.signIn.social({
                                                                             provider: "google",
-                                                                        })}>Google</Button>
+                                                                        })}>Google <FaGoogle/></Button>
                                                 <Button variant="outline" type="button" className="w-full"  onClick={()=> authClient.signIn.social({
                                                                                                     provider: "github",
-                                                                                                })}>GitHub</Button>
+                                                                                                })}>GitHub<FaGithub/></Button>
 
                      </div>
                      <div className="text-center text-sm">
