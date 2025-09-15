@@ -10,7 +10,7 @@ const Page = async()=>{
   if(!session){
     redirect("/sign-in")
   }
-  return <DashboardSidebar/>
+  return( <div><DashboardSidebar/> <HomeView/></div>)
 }
 
 export default Page
