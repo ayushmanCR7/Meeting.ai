@@ -5,15 +5,19 @@ import { agentsInsertSchema } from "../schemas";
 import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
 import { optional } from "better-auth";
+import { TRPCError } from "@trpc/server";
 
 export const agentsRouter = createTRPCRouter({
-    getOne: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ input }) => {
+    getOne: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx,input }) => {
         const [existingData] = await db.select(
             {
                 ...getTableColumns(agents),
                 meetingCount: sql<number>`5`,
             }
-        ).from(agents).where(eq(agents.id, input.id))
+        ).from(agents).where(and(eq(agents.id, input.id),eq(agents.userId,ctx.auth.user.id)))
+        if(!existingData){
+            throw new TRPCError({code: "NOT_FOUND",message: "Agent not found"})
+        }
         return existingData
     }),
     getMany: protectedProcedure.input(z.object({
