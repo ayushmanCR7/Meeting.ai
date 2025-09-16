@@ -1,6 +1,6 @@
 "use client"
 import {
-    Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription} from "@components/ui/dialog"
+    Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription} from "@/components/ui/dialog"
 
 import {Drawer,DrawerContent,DrawerHeader,DrawerTitle,DrawerDescription} from "@/components/ui/drawer"
 
@@ -11,15 +11,15 @@ interface ResponsiveDialogProns{
     description: string;
     children: React.ReactNode;
     open: boolean;
-    onOpenChnage: (open : boolean) => void;
+    onOpenChange: (open : boolean) => void;
 };
 
-export const ResponsiveDialog = ({title,description,children,open,onOpenChnage}:ResponsiveDialogProns) =>{
+export const ResponsiveDialog = ({title,description,children,open,onOpenChange}:ResponsiveDialogProns) =>{
     const isMobile = useIsMobile()
 
     if(isMobile){
         return <>
-          <Drawer open = {open} onOpenChnage = {onOpenChnage}>
+          <Drawer open = {open} onOpenChange = {onOpenChange}>
             <DrawerContent>
                 <DrawerHeader>
                     <DrawerTitle>
@@ -36,7 +36,7 @@ export const ResponsiveDialog = ({title,description,children,open,onOpenChnage}:
         </>
     }
     return (
-        <Dialog open = {open} onOpenChnage={onOpenChnage}>
+        <Dialog open = {open} onOpenChange={onOpenChange}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
