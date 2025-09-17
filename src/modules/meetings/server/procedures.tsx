@@ -5,9 +5,13 @@ import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
 import { optional } from "better-auth";
 import { TRPCError } from "@trpc/server";
+import { meetingsInsertSchema, meetingsUpdateSchema } from "../schemas";
 
 export const meetingsRouter = createTRPCRouter({
-    
+     create: protectedProcedure.input(meetingsInsertSchema).mutation(async ({ input, ctx }) => {
+            const [createdMeetings] = await db.insert(meetings).values({ ...input, userId: ctx.auth.user.id }).returning();
+            return createdMeetings
+        }),
     getOne: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx,input }) => {
         const [exisitingmeetings] = await db.select(
             {
@@ -40,6 +44,16 @@ export const meetingsRouter = createTRPCRouter({
             total: total.count,
             totalPages
         };
-    })
+    }),
+     update: protectedProcedure.input(meetingsUpdateSchema).mutation(async({ctx,input})=>{
+            const [updatedAgent] = await db.update(meetings).set(input).where(and(eq(meetings.id,input.id),eq(meetings.userId,ctx.auth.user.id))).returning()
+            if(!updatedAgent){
+                 throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Agent not foumd",
+                })
+            }
+            return updatedAgent
+        }),
 
 })
