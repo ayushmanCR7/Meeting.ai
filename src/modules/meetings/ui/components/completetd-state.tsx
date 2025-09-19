@@ -8,6 +8,9 @@ import { format } from "date-fns"
 import { Badge } from "@/components/ui/badge"
 import Markdown from "react-markdown"
 import humanizeDuration from "humanize-duration"
+import { Transcript } from "@/modules/agents/ui/components/transcript"
+import { ChatProvider } from "./chat-provider"
+
 interface Props {
     data: MeetingGetOne
 }
@@ -55,6 +58,12 @@ hover:text-accent-foreground">
                         <ScrollBar orientation="horizontal" />
                     </ScrollArea>
                 </div>
+                <TabsContent value="askAi">
+                    <ChatProvider meetingId = {data.id} meetingName = {data.name}/>
+                </TabsContent>
+                <TabsContent value="Transcript">
+                    <Transcript meetingId={data.id} />
+                </TabsContent>
                 <TabsContent value="Recording">
                     <div className="bg-white rounded-lg px-4 py-4">
                         <video src={data.recordingUrl ? data.recordingUrl : ""} className="w-full rounded-lg" controls></video>
