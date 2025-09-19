@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { agents } from "@/db/schems";
+import { agents, meetings } from "@/db/schems";
 import { baseProcedure, createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { agentsInsertSchema, agentsUpdateSchema } from "../schemas";
 import { z } from "zod";
@@ -33,7 +33,7 @@ export const agentsRouter = createTRPCRouter({
         const [existingData] = await db.select(
             {
                 ...getTableColumns(agents),
-                meetingCount: sql<number>`5`,
+                meetingCount: db.$count(meetings,eq(agents.id,meetings.agentId))
             }
         ).from(agents).where(and(eq(agents.id, input.id),eq(agents.userId,ctx.auth.user.id)))
         if(!existingData){
@@ -50,8 +50,8 @@ export const agentsRouter = createTRPCRouter({
             const {search,page,pageSize} = input;
         const data = await db.select(
             {
-                ...getTableColumns(agents),
-                meetingCount: sql<number>`5`,
+                 ...getTableColumns(agents),
+                meetingCount: db.$count(meetings,eq(agents.id,meetings.agentId))
             }
         ).from(agents).where(and(eq(agents.userId,ctx.auth.user.id),
        search? ilike(agents.name, `%${search}%`): undefined
