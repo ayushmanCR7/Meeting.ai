@@ -8,6 +8,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { DashboardUeserButton } from "./dashboard-user-button";
+import { DahboardTrial } from "./dashboard-trial";
 const firstSection = [
     {
         icon: VideoIcon,
@@ -24,7 +25,7 @@ const secondSection = [
     {
         icon: StarIcon,
         label: "Ugrade",
-        href: "/meetings"
+        href: "/upgrade"
 
     }
 ];
@@ -88,6 +89,7 @@ export const DashboardSidebar = ()=>{
                         </SidebarGroup>
                     </SidebarContent>
                     <SidebarFooter className="text-white">
+                        <DahboardTrial/>
                         <DashboardUeserButton/>
                     </SidebarFooter>
                 </Sidebar>

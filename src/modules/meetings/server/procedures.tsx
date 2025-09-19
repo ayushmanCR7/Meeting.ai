@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { agents, meetings, user } from "@/db/schems";
-import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import { baseProcedure, createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, inArray, sql } from "drizzle-orm";
 import { optional } from "better-auth";
@@ -67,7 +67,7 @@ getTranscript: protectedProcedure.input(z.object({ id: z.string() })).query(asyn
 
 
 }),
-    create: protectedProcedure.input(meetingsInsertSchema).mutation(async ({ input, ctx }) => {
+    create: premiumProcedure("meetings").input(meetingsInsertSchema).mutation(async ({ input, ctx }) => {
         const [createdMeetings] = await db.insert(meetings).values({ ...input, userId: ctx.auth.user.id }).returning();
 
         const call = streamVideo.video.call("default", createdMeetings.id);
