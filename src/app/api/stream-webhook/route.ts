@@ -2,8 +2,7 @@ import { db } from "@/db";
 import { agents, meetings } from "@/db/schems";
 import { inngest } from "@/inngest/client";
 import { streamVideo } from "@/lib/stream-video";
-import { MessageNewEvent, CallSessionStartedEvent, CallSessionParticipantLeftEvent, CallEndedEvent, CallTranscriptionReadyEvent, CallRecording, CallRecordingReadyEvent } from "@stream-io/node-sdk";
-import { } from "@stream-io/video-react-sdk";
+import { MessageNewEvent, CallSessionStartedEvent, CallSessionParticipantLeftEvent, CallEndedEvent, CallTranscriptionReadyEvent,  CallRecordingReadyEvent } from "@stream-io/node-sdk";
 import OpenAI from "openai"
 import { and, eq, not } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";

@@ -1,7 +1,6 @@
 import {betterAuth} from "better-auth"
 import {drizzleAdapter} from "better-auth/adapters/drizzle"
 import {db} from "../db"
-import { Provider } from "@radix-ui/react-tooltip"
 import * as schema from "@/db/schems"
 import { polar, checkout, portal } from "@polar-sh/better-auth";
 import { polarClient } from "./polar"

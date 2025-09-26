@@ -5,7 +5,7 @@ import { generateAvatarUri } from "@/lib/avatar";
 import { useTRPC } from "@/trpc/client";
 import { Avatar } from "@radix-ui/react-avatar";
 import { useQuery } from "@tanstack/react-query";
-import { format, formatDate } from "date-fns";
+import { format } from "date-fns";
 import {SearchIcon } from "lucide-react";
 import { useState } from "react";
 import  Highlighter  from "react-highlight-words";

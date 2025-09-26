@@ -1,9 +1,8 @@
 import { db } from "@/db";
 import { agents, meetings, user } from "@/db/schems";
-import { baseProcedure, createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
+import {  createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, inArray, sql } from "drizzle-orm";
-import { optional } from "better-auth";
 import { TRPCError } from "@trpc/server";
 import { meetingsInsertSchema, meetingsUpdateSchema } from "../schemas";
 import { MeetingStatus, StreamTranscriptItem } from "../types";

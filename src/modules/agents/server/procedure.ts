@@ -1,10 +1,9 @@
 import { db } from "@/db";
 import { agents, meetings } from "@/db/schems";
-import { baseProcedure, createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
+import {  createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { agentsInsertSchema, agentsUpdateSchema } from "../schemas";
 import { z } from "zod";
-import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
-import { optional } from "better-auth";
+import { and, count, desc, eq, getTableColumns, ilike } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 
 export const agentsRouter = createTRPCRouter({

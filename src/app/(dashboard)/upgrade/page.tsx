@@ -5,7 +5,6 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { p } from "node_modules/better-auth/dist/shared/better-auth.C6qXK08w";
 import { Suspense } from "react";
 const Page = async() => {
     const session = await auth.api.getSession({

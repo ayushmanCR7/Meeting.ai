@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StreamCall, StreamTheme, useCall } from "@stream-io/video-react-sdk";
+import { StreamTheme, useCall } from "@stream-io/video-react-sdk";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 import { CallLobby } from "./call-lobby";

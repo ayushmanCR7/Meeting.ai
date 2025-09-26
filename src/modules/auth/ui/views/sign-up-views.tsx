@@ -6,7 +6,7 @@ import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {Input} from "@/components/ui/input"
 import {Button} from "@/components/ui/button"
-import {Alert,AlertTitle,AlertDescription} from "@/components/ui/alert"
+import {Alert,AlertTitle} from "@/components/ui/alert"
 import {
     Form,
     FormControl,
@@ -19,7 +19,6 @@ import Link from "next/link"
 import {FaGithub,FaGoogle} from "react-icons/fa"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { auth } from "@/lib/auth"
 import { authClient } from "@/lib/auth-client"
 const formSchema = z.object({
     name: z.string().min(1,{message: "Name is required"}),
