@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dialog"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "./drawer"
-import { desc } from "drizzle-orm"
 
 function Command({
   className,

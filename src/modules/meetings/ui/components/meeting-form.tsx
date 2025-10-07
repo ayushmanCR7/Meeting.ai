@@ -40,7 +40,7 @@ export const MeetingForm = ({
     const queryClient = useQueryClient()
     const createMeeting = useMutation(
         trpc.meetings.create.mutationOptions({
-            onSuccess: async(data)=>{
+            onSuccess: async()=>{
                await queryClient.invalidateQueries(
                     trpc.meetings.getMany.queryOptions({}),
                 );

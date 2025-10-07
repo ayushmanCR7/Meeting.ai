@@ -4,7 +4,7 @@ import { PlusIcon, XCircleIcon } from "lucide-react"
 
 import { useState } from "react"
 
-import { DEFAULT_PAGE } from "@/constants"
+
 import { NewMeetingDilaog } from "./new-meeting-dialog"
 import { MeetingsSearchFilter } from "./metings-search-filters"
 import { StatusFilter } from "./status-filters"

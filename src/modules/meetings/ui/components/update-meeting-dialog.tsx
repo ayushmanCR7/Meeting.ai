@@ -15,7 +15,7 @@ export const UpdateMeetingDilaog = ({
     const router = useRouter()
 return (
     <ResponsiveDialog title = "Edit Meeting" description="Editmeeting" open = {open} onOpenChange={onOpenChange}>
-      <MeetingForm onSuccess={(id)=>{
+      <MeetingForm onSuccess={()=>{
         onOpenChange(false); router.push(`/meetings/${initialValue.id}`)
       }}
       onCancel={()=>onOpenChange(false)} initialValues={initialValue}

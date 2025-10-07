@@ -61,7 +61,7 @@ interface Props extends VariantProps<typeof pricingCardVariants> {
 }
 
 export const PricingCard = ({
-    variant, badge, price, features, title, description, priceSuffix, className, buttonText, onClick
+    variant, badge, price, features, title, description, priceSuffix, className, buttonText
 }: Props) => {
     return (
         <div className={cn(pricingCardVariants({ variant }), className, "border")}>

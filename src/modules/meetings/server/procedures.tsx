@@ -179,8 +179,6 @@ getTranscript: protectedProcedure.input(z.object({ id: z.string() })).query(asyn
                                     image: ctx.auth.user.image ?? generateAvatarUri({ seed: ctx.auth.user.name, variant: "initials" })
                                 }
                             ])
-                            const expirationTime = Math.floor(Date.now() / 1000) + 3600
-                            const issuedAt = Math.floor(Date.now() / 1000) - 60
 
                             const token = streamVideo.generateUserToken({
                                 user_id: ctx.auth.user.id,
