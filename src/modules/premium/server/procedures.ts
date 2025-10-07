@@ -30,9 +30,7 @@ export const premiumRouter = createTRPCRouter({
         return products.result.items;
     }),
     getFreeUsage: protectedProcedure.query(async ({ ctx }) => {
-        const customer = await polarClient.customers.getStateExternal({
-            externalId: ctx.auth.user.id,
-        });
+        
         const [userMeetings] = await db
             .select({
                 count: count(meetings.id),
